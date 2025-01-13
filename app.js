@@ -14,8 +14,8 @@ require("dotenv").config();
 
 // Connect to MongoDB
 mongoose
-  .connect('mongodb+srv://admin:AsT.=9dcgFWL_tw@cluster0.ltuka.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-  //.connect('mongodb://127.0.0.1:27017/demo')
+  //.connect('mongodb+srv://admin:AsT.=9dcgFWL_tw@cluster0.ltuka.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  .connect('mongodb://127.0.0.1:27017/demo')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));  
 var app = express();
