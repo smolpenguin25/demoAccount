@@ -1,0 +1,66 @@
+doctype html
+html
+    head
+        title Edit Account
+        link(rel='stylesheet', href='/stylesheets/form_style.css')
+    body
+        a(href='/acc', style='position: absolute; top: 10px; left: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;') Home
+        h1 Edit Account
+        //- enctype='multipart/form-data' is required for file upload
+        form(action=`/acc/edit/${account._id}`, method='post', enctype='multipart/form-data')
+            table 
+                tr 
+                    td
+                        label(for='fullname') Fullname:
+                    td
+                        input(type='text', name='fullname', id='fullname', required, value=(fullname ? fullname : account.fullname))
+                tr 
+                    td
+                        label(for='email') Email:
+                    td
+                        input(type='email', name='email', id='email', required, value=(email ? email : account.email))
+                        if(errors)
+                            each error in errors
+                                if(error.path == 'email')
+                                    span=error.msg
+                tr
+                    td
+                        label(for='pwd') Password:
+                    td
+                        input(type='password', name='pwd', id='pwd', required)
+                        if(errors)
+                            each error in errors
+                                if(error.path == 'pwd')
+                                    span=error.msg
+                tr
+                    td
+                        label(for='confirmPassword') Confirm Password:
+                    td
+                        input(type='password', name='confirmPassword', id='confirmPassword', required)
+                        if(errors)
+                            each error in errors
+                                if(error.path == 'confirmPassword')
+                                    span=error.msg
+                tr
+                    td
+                        label(for='phone') Phone:
+                    td
+                        input(type='text', name='phone', id='phone', required, value=(phone ? phone : account.phone))
+                        if(errors)
+                            each error in errors
+                                if(error.path == 'phone')
+                                    span=error.msg
+                tr
+                    td
+                        label(for='role') Role:
+                    td
+                        select(name='role', id='role', required)                         
+                            option(value='admin', selected=account.role==='admin') Admin
+                            option(value='user', selected=account.role==='user') User
+                tr
+                    td
+                        label(for='image') Image:
+                    td
+                        input(type='file', name='image', id='image')
+            div
+                button(type='submit') Edit Account

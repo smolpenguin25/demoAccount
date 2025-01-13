@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/table_style.css')
+  h4
+    a(href='/acc/create') Create Account 
+  h4 
+    a(href='/acc/register') Register Account
+  h4 
+    a(href='/acc/login') Login
+  h1 Account List
+  table 
+    thead
+      tr 
+        th id
+        th email
+        th phone
+        th active
+        th fullname
+        th role
+        th image
+        th action
+    tbody
+      each account in accounts
+        tr
+          td= account._id
+          td= account.email
+          td= account.phone
+          td= account.active
+          td= account.fullname
+          td= account.role
+          td 
+            img(src='/images/' + account.image, width='100', alt=`${account.image}`)
+          td
+            a(href='/acc/edit/' + account.id) Edit | 
+            a(href='/acc/delete/' + account.id) Delete
+    

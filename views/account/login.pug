@@ -1,0 +1,39 @@
+doctype html
+html
+    head
+        title Login
+        link(rel='stylesheet', href='/stylesheets/form_style.css')
+    body
+        a(href='/acc', style='position: absolute; top: 10px; left: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;') Home
+        h1 Login
+        form(action='/acc/login', method='post')
+            table 
+                tr 
+                    td
+                        label(for='email') Email:
+                    td
+                        input(type='email', name='email', id='email', required, value=(email ? email : ''))
+                        if(errors)
+                            each error in errors
+                                if(error.path == 'email')
+                                    span=error.msg
+                tr
+                    td
+                        label(for='pwd') Password:
+                    td
+                        input(type='password', name='pwd', id='pwd', required)
+                        if(errors)
+                            each error in errors
+                                if(error.path == 'pwd')
+                                    span=error.msg
+                //- tr
+                //-     td
+                //-         label(for='confirmPassword') Confirm Password:
+                //-     td
+                //-         input(type='password', name='confirmPassword', id='confirmPassword', required)
+                //-         if(errors)
+                //-             each error in errors
+                //-                 if(error.path == 'confirmPassword')
+                //-                     span=error.msg
+            div
+                button(type='submit') Login
